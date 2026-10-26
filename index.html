@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>San Francisco · Cinema Map</title><link rel="stylesheet" href="style.css"><script src="vendor/d3.v7.min.js" defer></script><script src="map.js" defer></script><script src="script.js" defer></script></head>
+<body><main><header><div class="eyebrow">A CITY IN THE FRAME / D3 CHOROPLETH</div><h1>San Francisco<span> on film.</span></h1><p>Explore the city's cinema geography, one neighborhood at a time.</p></header>
+<nav class="page-tabs" role="tablist" aria-label="Maps and assignments">
+<button id="map-tab" role="tab" aria-selected="true" aria-controls="map-panel" tabindex="0">Original map <span>Choropleth Map</span></button>
+<button id="recolor-tab" role="tab" aria-selected="false" aria-controls="recolor-panel" tabindex="-1">Recolor the city <span>Task 01</span></button>
+<button id="time-tab" role="tab" aria-selected="false" aria-controls="time-panel" tabindex="-1">Time travel <span>Task 02</span></button>
+</nav>
+<div id="map-panel" role="tabpanel" aria-labelledby="map-tab">
+<section class="atlas" aria-label="Film location choropleth"><div class="map-column"><div class="toolbar"><label>RELEASE YEARS <select id="years" aria-label="Release years"><option value="all">All years</option></select></label><label class="texture"><input id="texture" type="checkbox" checked> Street texture</label><button id="clear">Clear selection</button></div><div id="stage"><svg id="map" aria-label="San Francisco neighborhood film location density map"></svg><div class="controls"><button id="plus" aria-label="Zoom in">+</button><button id="minus" aria-label="Zoom out">−</button><button id="reset" aria-label="Reset zoom">↺</button></div><div class="north">N<br>↑</div><div class="caption">SAN FRANCISCO · 41 ANALYSIS NEIGHBORHOODS</div><div id="tooltip" role="tooltip" hidden></div></div><div class="legend-wrap"><div class="legend-title">Location records / km² <small>Fixed classes across release years</small></div><div id="legend"></div></div><p id="coverage" role="status">Loading local data…</p></div><aside><div class="eyebrow">THE NEIGHBORHOOD ARCHIVE</div><h2 id="selection">A city of stories.</h2><p id="hint">Select a neighborhood to discover its film locations.</p><div id="stats"></div><div id="details"></div></aside></section>
+</div>
+<section id="recolor-panel" class="assignment-panel" role="tabpanel" aria-labelledby="recolor-tab" hidden>
+<article class="assignment-card" id="variation-1">
+<div class="assignment-meta"><span class="eyebrow">TASK 01 / MAP COLORIST</span></div>
+<h3>Recolor the city.</h3><p>Replace the original warm palette with five blue shades ordered from light to dark. Keep all years, records, and class thresholds unchanged.</p>
+<div id="recolor-swatches" class="palette-swatches" aria-label="Five-class blue palette"></div>
+<div class="variation-stage"><svg id="recolor-map" aria-label="Task 1: blue neighborhood density map"></svg></div>
+<div class="variation-legend-title">Location records / km² · Fixed thresholds</div><div id="recolor-legend" class="variation-legend"></div>
+<p id="recolor-summary" class="result-summary" role="status">Loading data…</p>
+<div class="assignment-note">Observation</div><p id="recolor-observation"></p>
+<p class="variation-tip" id="recolor-tip" aria-live="polite">Hover, focus, or click a neighborhood to see its records and density.</p>
+</article>
+</section>
+<section id="time-panel" class="assignment-panel" role="tabpanel" aria-labelledby="time-tab" hidden>
+<article class="assignment-card" id="variation-2">
+<div class="assignment-meta"><span class="eyebrow">TASK 02 / TIME TRAVEL</span></div>
+<h3>Choose a release year.</h3><p>Choose a release year and filter mode. Recount records in each neighborhood and divide by its fixed area to recalculate density.</p>
+<div class="year-controls"><label>Release year <select id="task-year" aria-label="Task 2 release year"></select></label><label>Filter mode <select id="task-mode" aria-label="Task 2 filter mode"><option value="exact">Exact year</option><option value="since">Since year</option></select></label></div>
+<div class="variation-stage"><svg id="time-map" aria-label="Task 2: neighborhood density map filtered by release year"></svg></div>
+<div class="variation-legend-title">Location records / km² · Original palette and thresholds</div><div id="time-legend" class="variation-legend"></div>
+<p id="time-summary" class="result-summary" role="status">Loading data…</p>
+<div class="assignment-note">Observation</div><p id="time-observation"></p>
+<p class="variation-tip" id="time-tip" aria-live="polite">Hover, focus, or click a neighborhood to compare original and filtered values.</p>
+</article>
+<div class="comparison-heading"><h3>Neighborhood density comparison</h3><p>Compare all-year values with the selected release-year filter. Gray indicates zero records.</p></div>
+<div class="comparison-scroll"><table class="comparison-table"><caption id="comparison-caption">All years vs. filtered years</caption><thead><tr><th scope="col">Neighborhood</th><th scope="col">All-year records</th><th scope="col">All-year density / km²</th><th scope="col">Filtered records</th><th scope="col">Filtered density / km²</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+<p class="method-note">Uses the local CSV exported on October 26, 2026, with exact duplicate rows removed. Records without a usable neighborhood are excluded from neighborhood density. Unknown release years are excluded from year filters. Release year is not filming year.</p>
+</section>
+<footer>Source: DataSF · Film Locations in San Francisco · <a href="https://p6200754-source.github.io/sf-cinema-atlas/#explore" target="_blank" rel="noopener">Map reference ↗</a><p>Color shows records per km², not the number of distinct films. Areas include mapped water. Years refer to release years.</p></footer></main></body></html>
